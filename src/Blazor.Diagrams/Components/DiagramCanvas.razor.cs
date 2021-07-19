@@ -62,7 +62,7 @@ namespace Blazor.Diagrams.Components
 
             return false;
         }
-
+        
         private void OnMouseDown(MouseEventArgs e) => Diagram.OnMouseDown(null, e);
 
         private void OnMouseMove(MouseEventArgs e) => Diagram.OnMouseMove(null, e);

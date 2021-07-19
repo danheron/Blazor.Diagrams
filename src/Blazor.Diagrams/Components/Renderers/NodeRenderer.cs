@@ -103,15 +103,19 @@ namespace Blazor.Diagrams.Components.Renderers
                 builder.AddAttribute(3, "transform", $"translate({Node.Position.X.ToInvariantString()} {Node.Position.Y.ToInvariantString()})");
             }
 
-            builder.AddAttribute(4, "onmousedown", EventCallback.Factory.Create<MouseEventArgs>(this, OnMouseDown));
-            builder.AddEventStopPropagationAttribute(5, "onmousedown", true);
-            builder.AddAttribute(6, "onmouseup", EventCallback.Factory.Create<MouseEventArgs>(this, OnMouseUp));
-            builder.AddEventStopPropagationAttribute(7, "onmouseup", true);
-            builder.AddAttribute(8, "ontouchstart", EventCallback.Factory.Create<TouchEventArgs>(this, OnTouchStart));
-            builder.AddEventStopPropagationAttribute(9, "ontouchstart", true);
-            builder.AddAttribute(10, "ontouchend", EventCallback.Factory.Create<TouchEventArgs>(this, OnTouchEnd));
-            builder.AddEventStopPropagationAttribute(11, "ontouchend", true);
-            builder.AddEventPreventDefaultAttribute(12, "ontouchend", true);
+            // Only add mouse events if node is not locked
+            if (!Node.Locked)
+            {
+                builder.AddAttribute(4, "onmousedown", EventCallback.Factory.Create<MouseEventArgs>(this, OnMouseDown));
+                builder.AddEventStopPropagationAttribute(5, "onmousedown", true);
+                builder.AddAttribute(6, "onmouseup", EventCallback.Factory.Create<MouseEventArgs>(this, OnMouseUp));
+                builder.AddEventStopPropagationAttribute(7, "onmouseup", true);
+                builder.AddAttribute(8, "ontouchstart", EventCallback.Factory.Create<TouchEventArgs>(this, OnTouchStart));
+                builder.AddEventStopPropagationAttribute(9, "ontouchstart", true);
+                builder.AddAttribute(10, "ontouchend", EventCallback.Factory.Create<TouchEventArgs>(this, OnTouchEnd));
+                builder.AddEventStopPropagationAttribute(11, "ontouchend", true);
+                builder.AddEventPreventDefaultAttribute(12, "ontouchend", true);
+            }
             builder.AddElementReferenceCapture(13, value => _element = value);
             builder.OpenComponent(14, componentType);
             builder.AddAttribute(15, "Node", Node);

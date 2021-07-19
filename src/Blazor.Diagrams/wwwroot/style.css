@@ -4,8 +4,8 @@
     position: relative;
     outline: none;
     overflow: hidden;
-    cursor: -webkit-grab;
-    cursor: grab;
+    /*cursor: -webkit-grab;
+    cursor: grab;*/
     touch-action: none;
 }
 
@@ -41,7 +41,7 @@
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
-    cursor: move;
+    /*cursor: move;*/
     pointer-events: all;
 }
 
